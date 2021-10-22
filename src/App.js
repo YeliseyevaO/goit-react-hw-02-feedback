@@ -3,6 +3,9 @@ import React from "react";
 import Statistics from "./Components/Statistics";
 import FeedbackOptions from "./Components/FeedbackOptions";
 import Sections from "./Components/Sections";
+import Notification from "./Components/Notification";
+import Container from "./Components/Container";
+
 class App extends React.Component {
   state = {
     good: 0,
@@ -32,17 +35,20 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Sections title="Please leave feedback">
-          <FeedbackOptions
-            options={this.state}
-            onLeaveFeedback={this.onClickButton}
-          />
-          <Statistics
-            stat={this.state}
-            total={this.countTotalFeedback}
-            positivePercentage={this.countPositiveFeedbackPercentage}
-          />
-        </Sections>
+        <Container>
+          <Sections title="Please leave feedback">
+            <FeedbackOptions
+              options={this.state}
+              onLeaveFeedback={this.onClickButton}
+            />
+            <Statistics
+              options={this.state}
+              total={this.countTotalFeedback}
+              positivePercentage={this.countPositiveFeedbackPercentage}
+            />
+            <Notification options={this.state} message="No feedback given" />
+          </Sections>
+        </Container>
       </>
     );
   }
